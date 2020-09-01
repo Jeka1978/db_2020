@@ -17,4 +17,20 @@ public class Employee extends Person {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+//
+//    @Override
+//    public void printDetails() {
+//        super.printDetails();
+//        System.out.println("I'm employee");
+//        super.printDetails();
+//
+//        Person person = (Person) this;
+//
+//    }
+
+    public static void main(String[] args) {
+        Employee employee = new Employee("Lena", 18);
+        employee.printDetails();
+    }
 }
