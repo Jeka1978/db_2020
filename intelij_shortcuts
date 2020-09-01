@@ -1,0 +1,19 @@
+
+
+alt_enter - intelij talk to me
+
+psvm + tab = main method
+sout + tab = System.out.println()
+alt+insert = generate dialog
+cntrl+F12 show all methods and fields
+cntrl + / = one line comment
+cntrl + shift / = block of comments
+cntrl + w = mark line or block
+alt + j
+cntrl + alt+shift + j  mark all same words
+alt+cntrl+l = make code be nice
+
+
+cntrl+d duplicate
+
+intellij key promoter X
