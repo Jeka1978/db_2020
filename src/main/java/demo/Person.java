@@ -1,32 +1,32 @@
 package demo;
 
+import lombok.ToString;
+
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * @author Evgeny Borisov
  */
 
 
+@ToString(exclude = "age")
 public class Person implements Serializable {
 
     public static int counter;
 
-    private String name;
-    private String name2;
-    private String name4;
-    private String name5;
-    private String name6;
-    private transient double age =7;
-    private transient double x;
 
-    {
-        this.counter++;
-        System.out.println("person was created");
-        System.out.println("age = " + age);
-    }
+    private String name;
+    private transient int age =7;
+
 
     public Person() {
-        System.out.println("empty constructor");
+        Random random = new Random();
+        int i = random.nextInt(1000);
+        if (i == 500) {
+            System.out.println("empty constructor");
+        }
+
     }
 
     public Person(String name, int age) {
@@ -42,6 +42,7 @@ public class Person implements Serializable {
     public double getAge() {
         return age;
     }
+
 
 
     public void printDetails() {
@@ -63,9 +64,8 @@ public class Person implements Serializable {
 
 
         System.out.println("NAME = " + name);
-        System.out.println("NAME = " + name2);
-        System.out.println("NAME = " + name4);
         System.out.println("AGE = " + age);
     }
+
 
 }
