@@ -1,11 +1,13 @@
 package animals;
 
+import java.io.IOException;
+
 /**
  * @author Evgeny Borisov
  */
 public class Dog implements Animal {
     @Override
-    public void makeVoice() {
+    public void makeVoice()  {
         System.out.println("gav gav");
     }
 

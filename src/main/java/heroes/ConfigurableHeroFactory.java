@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author Evgeny Borisov
@@ -19,8 +20,8 @@ public class ConfigurableHeroFactory implements HeroFactory {
 
     @Override
     public Hero createNewHero() {
-        List<HeroCreator> heroCreators = heroesConfig.getHeroCreators();
-        return RandomUtil.randomItem(heroCreators).create(faker.funnyName().name());
+        List<Function<String, Hero>> heroCreators = heroesConfig.getHeroCreators();
+        return RandomUtil.randomItem(heroCreators).apply(faker.funnyName().name());
 
     }
 }

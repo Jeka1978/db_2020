@@ -10,6 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Product product = new Product("pink floyd animals", 100, 0);
+        Product product1 = product.withPrice(200);
+        System.out.println("product = " + product);
+        System.out.println("product1 = " + product1);
+
 
         Human human = Human.builder()
                 .age(32)
