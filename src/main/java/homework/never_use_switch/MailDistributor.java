@@ -1,24 +1,47 @@
 package homework.never_use_switch;
 
+import lombok.SneakyThrows;
+import org.reflections.Reflections;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author Evgeny Borisov
  */
 public class MailDistributor {
 
+    private Map<Integer,MailSender> mailSenderMap = new HashMap<>();
 
-    public void sendMailInfo(MailInfo mailInfo) {
-        switch (mailInfo.getMailType()) {
-            case 1:
-                // 60 lines of code which will send WELCOME mail
-                System.out.println("WELCOME " + mailInfo.getText() + " was sent to" + mailInfo.getEmail());
-                break;
-            case 2:
-                // 80 lines of code which will send WELCOME mail
-                System.out.println("EMAIL_CALLBACK " + mailInfo.getText() + " was sent to" + mailInfo.getEmail());
-            case 3:
-               // todo for Leno4ka send mail Happy Birthday
-                break;
-            default:// throw unsupported
+
+    @SneakyThrows
+    public MailDistributor() {
+        Reflections scanner = new Reflections("homework.never_use_switch");
+        Set<Class<? extends MailSender>> classes = scanner.getSubTypesOf(MailSender.class);
+        for (Class<? extends MailSender> aClass : classes) {
+            MailSender mailSender = aClass.getDeclaredConstructor().newInstance();
+            if (mailSenderMap.containsKey(mailSender.myCode())) {
+                throw new IllegalStateException(mailSender.myCode() + " already exists");
+            }
+            mailSenderMap.put(mailSender.myCode(), mailSender);
         }
     }
+
+    public void sendMailInfo(MailInfo mailInfo) {
+
+        MailSender mailSender = mailSenderMap.getOrDefault(mailInfo.getMailType(), new DefaultMailSender());
+        mailSender.sendMail(mailInfo);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

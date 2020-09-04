@@ -17,7 +17,7 @@ public class Person implements Serializable {
 
 
     private String name;
-    private transient int age =7;
+    public transient int age =7;
 
 
     public Person() {

@@ -23,7 +23,11 @@ public class MailMockProducer {
                     .email(dataFactory.getEmailAddress())
                     .mailType(mailType)
                     .text(faker.chuckNorris().fact()).build();
-            mailDistributor.sendMailInfo(mailInfo);
+            try {
+                mailDistributor.sendMailInfo(mailInfo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Thread.sleep(1000);
         }
     }
