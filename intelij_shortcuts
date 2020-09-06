@@ -1,0 +1,35 @@
+
+
+
+alt+ctrl+v = extract variable
+
+alt+ ctrl + n = inline variable
+
+alt_enter - intelij talk to me
+
+psvm + tab = main method
+sout + tab = System.out.println()    (soutv)
+alt+insert = generate dialog
+cntrl+F12 show all methods and fields
+cntrl + / = one line comment
+cntrl + shift / = block of comments
+cntrl + w = mark line or block
+alt + j
+cntrl + alt+shift + j  mark all same words
+alt+cntrl+l = make code be nice
+itar + tab = iterate though collection with index
+iter + tab = iterate though collection without index
+
+cnrl+b = drill down inside impl
+cntrl + n - find class, cntln + shift + n - find file (not class), cntrl+alt+shift+n = find method or field
+shift + shift = find all menu
+
+
+cntrl+d duplicate
+cntrl + o = override method
+
+cntrl + shift+ enter = close expression (braces, semicolons)
+
+alt+cntrl+m = extract selected code to method
+
+intellij key promoter X

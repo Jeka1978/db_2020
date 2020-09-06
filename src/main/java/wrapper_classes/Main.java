@@ -1,17 +1,27 @@
-package com.deutsche;
+package wrapper_classes;
 
 import demo.Person;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author Evgeny Borisov
  */
 public class Main {
 
+
+
+
     public static void main(String[] args) {
 
-        var person = new Person("asd",12);
+
+        Person person = new Person("petya",12);
         System.out.println(person);
+
+
+
+
     }
 }
