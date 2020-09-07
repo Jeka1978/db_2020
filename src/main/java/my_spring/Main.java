@@ -17,7 +17,7 @@ public class Main {
         ObjectFactory.getInstance().setConfig(new JavaConfig(map,"my_spring") {
         });
 
-        IRobot iRobot = new IRobot();
+        IRobot iRobot = ObjectFactory.getInstance().createObject(IRobot.class);
         iRobot.cleanRoom();
     }
 }
