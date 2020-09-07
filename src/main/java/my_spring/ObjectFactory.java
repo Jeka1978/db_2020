@@ -3,8 +3,13 @@ package my_spring;
 import heroes.RandomUtil;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Evgeny Borisov
@@ -17,7 +22,19 @@ public class ObjectFactory {
     @Setter
     private Config config;
 
+    private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
+
+    private Reflections scanner = new Reflections("my_spring");
+
+    @SneakyThrows
     private ObjectFactory() {
+
+        Set<Class<? extends ObjectConfigurer>> classes = scanner.getSubTypesOf(ObjectConfigurer.class);
+        for (Class<? extends ObjectConfigurer> aClass : classes) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                objectConfigurers.add(aClass.getDeclaredConstructor().newInstance());
+            }
+        }
     }
 
     public static ObjectFactory getInstance() {
@@ -26,32 +43,51 @@ public class ObjectFactory {
 
     @SneakyThrows
     public <T> T createObject(Class<T> type) {
+        Class<? extends T> implClass = resolveImpl(type);
+        T t = create(implClass);
+        configure(t);
+        return t;
+    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private <T> void configure(T t) {
+        objectConfigurers.forEach(objectConfigurer -> objectConfigurer.configure(t));
+    }
+
+    private <T> T create(Class<? extends T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
+        return implClass.getDeclaredConstructor().newInstance();
+    }
+
+    private <T> Class<? extends T> resolveImpl(Class<T> type) {
         Class<? extends T> implClass;
         if (type.isInterface()) {
             implClass = config.getImpl(type);
+            if (implClass == null) {
+                Set<Class<? extends T>> classes = scanner.getSubTypesOf(type);
+                if (classes.size() != 1) {
+                    throw new IllegalStateException(type + " has 0 or more than one impl, please update your config");
+                }
+                implClass = classes.iterator().next();
+            }
         }else {
             implClass = type;
         }
-        T t = implClass.getDeclaredConstructor().newInstance();
-
-        Field[] fields = implClass.getDeclaredFields();
-        for (Field field : fields) {
-            InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
-            if (annotation != null) {
-                int randomInt = RandomUtil.getIntBetween(annotation.min(), annotation.max());
-                field.setAccessible(true);
-                field.setInt(t,randomInt);
-            }
-        }
-
-
-        return t;
-
-
-        //todo finish this
-        // if type is concrete class, just create and return it's instance
-        //if type is and interface, you should find appropriative impl.
+        return implClass;
     }
 }
 
