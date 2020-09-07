@@ -19,4 +19,8 @@ public class Exercise {
     private Operator operator;
 
 
+    @Override
+    public String toString() {
+        return a + " " + operator + " " + b + " = " + answer;
+    }
 }
