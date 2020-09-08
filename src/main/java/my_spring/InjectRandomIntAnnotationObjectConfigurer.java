@@ -2,6 +2,7 @@ package my_spring;
 
 import heroes.RandomUtil;
 import lombok.SneakyThrows;
+import org.reflections.ReflectionUtils;
 
 import java.lang.reflect.Field;
 
@@ -13,7 +14,7 @@ public class InjectRandomIntAnnotationObjectConfigurer implements ObjectConfigur
     @SneakyThrows
     public void configure(Object t, ApplicationContext context) {
         Class<?> implClass = t.getClass();
-        Field[] fields = implClass.getDeclaredFields();
+        var fields = ReflectionUtils.getAllFields(implClass);
         for (Field field : fields) {
             InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
             if (annotation != null) {
