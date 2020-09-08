@@ -23,6 +23,13 @@ public final class CleanerImpl implements Cleaner {
             System.out.println("VVVVVVVVVVVVVVVVVVvvvvvvvvvvvvvvvvvvvv");
         }
     }
+
+
+    @Benchmark
+    public void mishaSpasibo() {
+        System.out.println("asdgfhd");
+    }
+
 }
 
 

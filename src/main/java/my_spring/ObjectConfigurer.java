@@ -7,6 +7,4 @@ public interface ObjectConfigurer {
 
     void configure(Object t, ApplicationContext context);
 
-
-
 }

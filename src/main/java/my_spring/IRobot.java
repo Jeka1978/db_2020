@@ -6,8 +6,11 @@ import javax.annotation.PostConstruct;
  * @author Evgeny Borisov
  */
 
-
+@Benchmark
 public class IRobot {
+
+    @InjectByType
+    private DBankService dBankService;
 
     @InjectRandomInt(max = 10, min = 1)
     private int version;
@@ -20,8 +23,13 @@ public class IRobot {
 
     @PostConstruct
     public void init() {
+        dBankService.drinkBeer();
         System.out.println("version = " + version);
 
+    }
+
+    private void doX() {
+        System.out.println("XXXXXXXXXXXx");
     }
 
 

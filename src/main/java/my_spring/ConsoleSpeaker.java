@@ -9,6 +9,7 @@ import lombok.Builder;
 @Singleton
 public class ConsoleSpeaker implements Speaker {
     @Override
+    @Benchmark
     public void speak(String message) {
         System.out.println(message);
     }

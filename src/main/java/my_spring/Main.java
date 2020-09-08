@@ -6,7 +6,7 @@ import java.util.Map;
  * @author Evgeny Borisov
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         Map<Class<?>, Class<?>> map = Map.of(
@@ -20,6 +20,11 @@ public class Main {
 
         IRobot iRobot = context.getBean(IRobot.class);
 
-        iRobot.cleanRoom();
+        while (true) {
+            iRobot.cleanRoom();
+            Thread.sleep(3000);
+        }
+
+
     }
 }

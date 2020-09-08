@@ -20,4 +20,8 @@ public class InjectByTypeAnnotationObjectConfigurer implements ObjectConfigurer 
             }
         }
     }
+
+
+
+
 }
