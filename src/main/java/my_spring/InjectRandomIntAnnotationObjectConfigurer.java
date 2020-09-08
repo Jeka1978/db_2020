@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 public class InjectRandomIntAnnotationObjectConfigurer implements ObjectConfigurer {
     @Override
     @SneakyThrows
-    public void configure(Object t) {
+    public void configure(Object t, ApplicationContext context) {
         Class<?> implClass = t.getClass();
         Field[] fields = implClass.getDeclaredFields();
         for (Field field : fields) {

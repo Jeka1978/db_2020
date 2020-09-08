@@ -20,18 +20,16 @@ import java.util.Set;
  */
 public class ObjectFactory {
 
-
-
-    private static ObjectFactory objectFactory = new ObjectFactory();
-    @Setter
-    private Config config;
+    private ApplicationContext context;
 
     private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
 
-    private Reflections scanner = new Reflections("my_spring");
+    private Reflections scanner;
 
     @SneakyThrows
-    private ObjectFactory() {
+    ObjectFactory(ApplicationContext context, Reflections scanner) {
+        this.scanner = scanner;
+        this.context = context;
 
         Set<Class<? extends ObjectConfigurer>> classes = scanner.getSubTypesOf(ObjectConfigurer.class);
         for (Class<? extends ObjectConfigurer> aClass : classes) {
@@ -41,13 +39,10 @@ public class ObjectFactory {
         }
     }
 
-    public static ObjectFactory getInstance() {
-        return objectFactory;
-    }
 
     @SneakyThrows
-    public <T> T createObject(Class<T> type) {
-        Class<? extends T> implClass = resolveImpl(type);
+    public <T> T createObject(Class<T> implClass) {
+
         T t = create(implClass);
         configure(t);
         invokeInitMethod(implClass, t);
@@ -72,43 +67,15 @@ public class ObjectFactory {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     private <T> void configure(T t) {
-        objectConfigurers.forEach(objectConfigurer -> objectConfigurer.configure(t));
+        objectConfigurers.forEach(objectConfigurer -> objectConfigurer.configure(t,context));
     }
 
     private <T> T create(Class<? extends T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
         return implClass.getDeclaredConstructor().newInstance();
     }
 
-    private <T> Class<? extends T> resolveImpl(Class<T> type) {
-        Class<? extends T> implClass;
-        if (type.isInterface()) {
-            implClass = config.getImpl(type);
-            if (implClass == null) {
-                Set<Class<? extends T>> classes = scanner.getSubTypesOf(type);
-                if (classes.size() != 1) {
-                    throw new IllegalStateException(type + " has 0 or more than one impl, please update your config");
-                }
-                implClass = classes.iterator().next();
-            }
-        }else {
-            implClass = type;
-        }
-        return implClass;
-    }
+
 }
 
 

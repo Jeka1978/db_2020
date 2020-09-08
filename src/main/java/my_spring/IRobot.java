@@ -5,9 +5,11 @@ import javax.annotation.PostConstruct;
 /**
  * @author Evgeny Borisov
  */
+
+
 public class IRobot {
 
-    @InjectRandomInt(max = 10,min = 1)
+    @InjectRandomInt(max = 10, min = 1)
     private int version;
 
     @InjectByType
@@ -21,6 +23,7 @@ public class IRobot {
         System.out.println("version = " + version);
 
     }
+
 
     public void cleanRoom() {
         speaker.speak("Я начал уборку");

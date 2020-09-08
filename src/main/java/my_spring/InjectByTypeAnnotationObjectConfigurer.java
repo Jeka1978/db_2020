@@ -10,11 +10,11 @@ import java.lang.reflect.Field;
 public class InjectByTypeAnnotationObjectConfigurer implements ObjectConfigurer {
     @SneakyThrows
     @Override
-    public void configure(Object t) {
+    public void configure(Object t, ApplicationContext context) {
         Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(InjectByType.class)) {
-                Object value = ObjectFactory.getInstance().createObject(field.getType());
+                Object value = context.getBean(field.getType());
                 field.setAccessible(true);
                 field.set(t,value);
             }
