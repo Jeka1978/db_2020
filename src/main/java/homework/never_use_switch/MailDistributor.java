@@ -10,6 +10,7 @@ import java.util.Set;
 /**
  * @author Evgeny Borisov
  */
+
 public class MailDistributor {
 
     private Map<Integer,MailSender> mailSenderMap = new HashMap<>();

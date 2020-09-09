@@ -3,6 +3,7 @@
 //import heroes.RandomUtil;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
+//import real_spring.quoters.IntegerFactory;
 //
 ///**
 // * @author Evgeny Borisov
@@ -13,5 +14,10 @@
 //    @Bean
 //    public Integer randomInt(){
 //        return RandomUtil.getIntBetween(1, 100);
+//    }
+//
+//    @Bean
+//    public IntegerFactory integerFactory(){
+//        return new IntegerFactory(12, 120);
 //    }
 //}

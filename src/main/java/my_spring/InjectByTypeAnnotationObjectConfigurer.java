@@ -3,6 +3,7 @@ package my_spring;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @author Evgeny Borisov
@@ -19,6 +20,14 @@ public class InjectByTypeAnnotationObjectConfigurer implements ObjectConfigurer 
                 field.set(t,value);
             }
         }
+        Method[] methods = t.getClass().getMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(InjectByType.class)) {
+                Object bean = context.getBean(method.getParameterTypes()[0]);
+                method.invoke(t, bean);
+            }
+        }
+
     }
 
 

@@ -16,7 +16,7 @@ import java.util.List;
 public class TalkingRobotImpl implements TalkingRobot {
 
 
-    @Setter
+    @Autowired
     private List<Quoter> quoters;
 
 
