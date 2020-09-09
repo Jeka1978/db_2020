@@ -5,9 +5,23 @@
        xmlns:context="http://www.springframework.org/schema/context">
 
 
+    <bean class="my_spring.BeanDefinitionValidatorBeanFactoryPostProcessor"/>
+
+    <bean class="real_spring.quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
+
+    <context:component-scan base-package="real_spring"/>
 
 
-    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <context:property-placeholder location="classpath:application.properties"/>
+
+
+    <bean id="integerFactory" class="real_spring.quoters.IntegerFactory">
+        <constructor-arg index="0" value="12"/>
+        <constructor-arg index="1" value="120"/>
+    </bean>
+
+
+    <!--    <bean id="randomInt" class="java.lang.Integer" factory-bean="integerFactory" factory-method="randomInt"/>-->
 
 
     <bean id="anotherQuote" class="java.lang.String">
@@ -15,18 +29,18 @@
     </bean>
 
 
-
     <bean id="talkingRobot" class="real_spring.quoters.TalkingRobotImpl">
-        <constructor-arg>
+        <property name="quoters">
             <list>
                 <ref bean="terminatorQuoter"/>
                 <ref bean="shakespeareQuoter"/>
             </list>
-        </constructor-arg>
+        </property>
 
     </bean>
 
-    <bean id="terminatorQuoter" class="real_spring.quoters.TerminatorQuoter">
+    <bean id="terminatorQuoter" class="real_spring.quoters.TerminatorQuoter" destroy-method="killAll"
+          init-method="init">
         <property name="messages">
             <list>
                 <value>I'll be back</value>
@@ -37,9 +51,19 @@
     </bean>
 
 
-
-
     <bean id="shakespeareQuoter" class="real_spring.quoters.ShakespeareQuoter">
-        <property name="message" value="2 B || ! 2 B"/>
+        <property name="message" value="${shake}"/>
     </bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+

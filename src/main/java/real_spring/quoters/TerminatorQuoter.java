@@ -2,7 +2,6 @@ package real_spring.quoters;
 
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +27,13 @@ public class TerminatorQuoter implements Quoter {
     public void init() {
         System.out.println("Мне нужна твоя одежду, ботинки и мотоцикл");
     }
+
+
+    public void killAll() {
+        System.out.println("you are terminated...");
+    }
+
+
 }
 
 

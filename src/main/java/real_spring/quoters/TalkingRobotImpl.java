@@ -1,6 +1,7 @@
 package real_spring.quoters;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,11 +11,13 @@ import java.util.List;
 /**
  * @author Evgeny Borisov
  */
-@RequiredArgsConstructor
+
+
 public class TalkingRobotImpl implements TalkingRobot {
 
 
-    private final List<Quoter> quoters;
+    @Setter
+    private List<Quoter> quoters;
 
 
 
