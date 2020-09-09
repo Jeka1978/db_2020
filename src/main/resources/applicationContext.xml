@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="false" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:context="http://www.springframework.org/schema/context">
+
+
+
+
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+
+    <bean id="anotherQuote" class="java.lang.String">
+        <constructor-arg value="trust me!"/>
+    </bean>
+
+
+
+    <bean id="talkingRobot" class="real_spring.quoters.TalkingRobotImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="terminatorQuoter"/>
+                <ref bean="shakespeareQuoter"/>
+            </list>
+        </constructor-arg>
+
+    </bean>
+
+    <bean id="terminatorQuoter" class="real_spring.quoters.TerminatorQuoter">
+        <property name="messages">
+            <list>
+                <value>I'll be back</value>
+                <ref bean="anotherQuote"/>
+                <value>Astalavista baby</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+    <bean id="shakespeareQuoter" class="real_spring.quoters.ShakespeareQuoter">
+        <property name="message" value="2 B || ! 2 B"/>
+    </bean>
+</beans>

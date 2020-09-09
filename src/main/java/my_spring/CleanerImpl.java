@@ -1,5 +1,8 @@
 package my_spring;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Lazy;
+
 import javax.annotation.PostConstruct;
 
 /**
@@ -19,6 +22,7 @@ public final class CleanerImpl implements Cleaner {
 
     @Override
     public void clean() {
+
         for (int i = 0; i < repeat; i++) {
             System.out.println("VVVVVVVVVVVVVVVVVVvvvvvvvvvvvvvvvvvvvv");
         }
