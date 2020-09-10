@@ -8,7 +8,7 @@
 
 
 
-    <bean class="org.fluttercode.datafactory.impl.DataFactory"/>
+    <bean id="factory" class="org.fluttercode.datafactory.impl.DataFactory" primary="true"/>
 
 
 

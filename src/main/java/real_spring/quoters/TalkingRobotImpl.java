@@ -1,8 +1,5 @@
 package real_spring.quoters;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +15,10 @@ import java.util.List;
 public class TalkingRobotImpl implements TalkingRobot {
 
 
-    @Autowired
-    private List<Quoter> quoters;
 
+    @Autowired
+    @Film
+    private List<Quoter> quoters = List.of(() -> System.out.println("this is default quote"));
 
 
     @Override
