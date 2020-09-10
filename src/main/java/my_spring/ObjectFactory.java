@@ -3,12 +3,15 @@ package my_spring;
 import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -84,11 +87,14 @@ public class ObjectFactory {
         objectConfigurers.forEach(objectConfigurer -> objectConfigurer.configure(t, context));
     }
 
+    @SneakyThrows
     private <T> T create(Class<? extends T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
 
 //        Constructor<?> autowiredConstructor = Arrays.stream(implClass.getDeclaredConstructors())
 //                .filter(constructor -> constructor.isAnnotationPresent(Autowired.class)).findAny().get();
 //        Class<?>[] types = autowiredConstructor.getParameterTypes();
+//
+//
 //
 //        Object[] constructorArgs = new Object[types.length];
 //
@@ -96,7 +102,9 @@ public class ObjectFactory {
 //            Class<?> type = types[i];
 //            constructorArgs[i] = context.getBean(type);
 //        }
-//       return autowiredConstructor.newInstance(constructorArgs);
+//
+//
+//        autowiredConstructor.newInstance(constructorArgs);
 
 
         return implClass.getDeclaredConstructor().newInstance();

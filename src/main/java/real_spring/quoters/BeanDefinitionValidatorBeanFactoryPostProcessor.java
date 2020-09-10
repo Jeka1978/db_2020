@@ -1,4 +1,4 @@
-package my_spring;
+package real_spring.quoters;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;

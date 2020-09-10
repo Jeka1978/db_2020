@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
  * @author Evgeny Borisov
  */
 @Component
-public class WelcomeMailSender implements MailSender {
+public class HappyBirthdayMailSender implements MailSender {
     @Override
     public void sendMail(MailInfo mailInfo) {
-        System.out.println("WELCOME was sent "+mailInfo);
+        System.out.println("H B");
     }
 
     @Override
     public int myCode() {
-        return 1;
+        return 3;
     }
 }

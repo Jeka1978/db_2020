@@ -1,5 +1,7 @@
 package homework.never_use_switch;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author Evgeny Borisov
  */

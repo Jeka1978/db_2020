@@ -6,42 +6,11 @@
 
 
 
-    <bean class="my_spring.BeanDefinitionValidatorBeanFactoryPostProcessor"/>
-
-<!--    <bean class="real_spring.quoters.InjectRandomIntAnnotationBeanPostProcessor"/>-->
-
-    <context:component-scan base-package="real_spring"/>
 
 
-    <context:property-placeholder location="classpath:application.properties"/>
-
-    <bean class="java.lang.Integer">
-        <constructor-arg  value="1001"/>
-    </bean>
-
-  <!--  <bean id="integerFactory" class="real_spring.quoters.IntegerFactory">
-        <constructor-arg index="0" value="12"/>
-        <constructor-arg index="1" value="120"/>
-    </bean>
--->
-
-    <!--    <bean id="randomInt" class="java.lang.Integer" factory-bean="integerFactory" factory-method="randomInt"/>-->
+    <bean class="org.fluttercode.datafactory.impl.DataFactory"/>
 
 
-
-    <bean id="talkingRobot" class="real_spring.quoters.TalkingRobotImpl">
-
-
-    </bean>
-
-    <bean id="terminatorQuoter" class="real_spring.quoters.TerminatorQuoter">
-
-    </bean>
-
-
-    <bean id="shakespeareQuoter" class="real_spring.quoters.ShakespeareQuoter">
-
-    </bean>
 
 
 </beans>

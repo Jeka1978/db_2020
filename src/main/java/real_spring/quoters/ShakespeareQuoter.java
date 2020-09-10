@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
  * @author Evgeny Borisov
  */
 
+@Component
 public class ShakespeareQuoter implements Quoter {
     @Value("${shake}")
     private String message;
