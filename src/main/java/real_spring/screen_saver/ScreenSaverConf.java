@@ -15,14 +15,17 @@ import static heroes.RandomUtil.getIntBetween;
 public class ScreenSaverConf {
 
 
-
-
     @Bean
-    @Scope("prototype")
+    @Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Color color(){
         return new Color(getIntBetween(0, 255), getIntBetween(0, 255), getIntBetween(0, 255));
     }
 
+
+    @Bean
+    public ColorFrame colorFrame(){
+        return new ColorFrame();
+    }
 
 
     public static void main(String[] args) throws InterruptedException {

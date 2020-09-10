@@ -17,7 +17,6 @@ public class TalkingRobotImpl implements TalkingRobot {
 
 
     @Autowired
-    @Film
     private List<Quoter> quoters = List.of(() -> System.out.println("this is default quote"));
 
 
