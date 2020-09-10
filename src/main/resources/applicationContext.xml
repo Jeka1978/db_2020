@@ -6,8 +6,6 @@
 
 
 
-
-
     <bean id="factory" class="org.fluttercode.datafactory.impl.DataFactory" primary="true"/>
 
 
