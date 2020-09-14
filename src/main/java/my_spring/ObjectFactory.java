@@ -3,15 +3,12 @@ package my_spring;
 import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -66,7 +63,7 @@ public class ObjectFactory {
 
     private <T> T configureProxyIfNeeded(Class<T> implClass, T t) {
         for (ProxyConfigurer proxyConfigurer : proxyConfigurers) {
-            t = (T) proxyConfigurer.wrapWithProxy(context, t, implClass);
+            t = (T) proxyConfigurer.replaceWithProxy(context, t, implClass);
         }
         return t;
     }

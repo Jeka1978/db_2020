@@ -9,8 +9,11 @@ import java.util.Map;
 public class DBankServiceImpl implements DBankService {
     @Override
     public void doWork() {
+        long start = System.nanoTime();
         System.out.println("working...");
         this.drinkBeer();
+        long end = System.nanoTime();
+        System.out.println(end-start);
     }
 
     @Override

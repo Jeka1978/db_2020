@@ -25,7 +25,7 @@ public class BankService {
         List<String> data = getData();
         processData(data);
 
-        myOwnProxy.save(data);
+        this.save(data);
 
     }
 

@@ -20,7 +20,7 @@ public class ColorFrame extends JFrame {
 
     public ColorFrame() {
         setSize(200, 200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
 

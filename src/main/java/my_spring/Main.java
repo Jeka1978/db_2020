@@ -1,5 +1,7 @@
 package my_spring;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.Map;
 
 /**
@@ -16,6 +18,12 @@ public class Main {
 
 
         JavaConfig config = new JavaConfig(map, "my_spring");
+
+
+
+
+
+
         ApplicationContext context = new ApplicationContext(config);
 
         IRobot iRobot = context.getBean(IRobot.class);
@@ -28,3 +36,6 @@ public class Main {
 
     }
 }
+
+
+

@@ -38,6 +38,9 @@ public class ApplicationContext {
 
 
     private <T> Class<? extends T> resolveImpl(Class<T> type) {
+
+
+
         Class<? extends T> implClass;
         if (type.isInterface()) {
             implClass = config.getImpl(type);

@@ -26,7 +26,7 @@ public class BenchmarkProxyConfigurer implements ProxyConfigurer {
 
 
     @Override
-    public Object wrapWithProxy(ApplicationContext context, Object t, Class<?> implClass) {
+    public Object replaceWithProxy(ApplicationContext context, Object t, Class<?> implClass) {
         if (implClass.isAnnotationPresent(Benchmark.class) ||
                 ReflectionUtils.getAllMethods(implClass).stream().anyMatch(method -> method.isAnnotationPresent(Benchmark.class))) {
             if (implClass.getInterfaces().length != 0) {

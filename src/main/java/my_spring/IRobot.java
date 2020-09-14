@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 @Benchmark
 public class IRobot {
 
-    @InjectByType
+
     private DBankService dBankService;
 
     @InjectRandomInt(max = 10, min = 1)
@@ -39,3 +39,11 @@ public class IRobot {
         speaker.speak("Я закончил уборку");
     }
 }
+
+
+
+
+
+
+
+

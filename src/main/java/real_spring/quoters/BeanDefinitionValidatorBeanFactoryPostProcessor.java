@@ -15,7 +15,6 @@ public class BeanDefinitionValidatorBeanFactoryPostProcessor implements BeanFact
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
-
         String[] names = beanFactory.getBeanDefinitionNames();
         System.out.println("names.length = " + names.length);
         for (String name : names) {
